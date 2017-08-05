@@ -20,7 +20,7 @@ Enemy.prototype.update = function(dt) {
     this.x *= dt + this.x;
 };
 
-allEnemies.push(new Enemy(0,61.5), new Enemy(0,145.5), new Enemy(0,225));
+allEnemies.push(new Enemy(0,61.5), new Enemy(0,144.5), new Enemy(0,227.5));
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -43,6 +43,19 @@ Player.prototype.update=function(){};
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+Player.prototype.handleInput(direction){
+    var moveLeftRight = 101;
+    var moveUpDown = 83;
+    if(direction === 'left' && (this.y - moveLeftRight) > 0){
+            this.y -=moveLeftRight;
+    } if(direction === 'right' && (this.y + moveLeftRight) < 505){
+            this.y +=moveLeftRight;
+    } if(direction === 'up' && (this.x - moveUpDown) > 83){
+            this.y -=moveUpDown;
+    } if(direction === 'down' && (this.y + moveUpDown) < 498 ){
+            this.y +=moveUpDown;
+    }
+}
 var player = new Player(202,318);
 
 
