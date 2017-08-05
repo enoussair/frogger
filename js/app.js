@@ -46,11 +46,11 @@ Player.prototype.update=function(){};
 Player.prototype.handleInput = function(direction){
     var moveLeftRight = 101;
     var moveUpDown = 83;
-    if(direction === 'left' && (this.y - moveLeftRight) > 0){
+    if(direction === 'left' && (this.x - moveLeftRight) > 0){
             this.y -=moveLeftRight;
-    } if(direction === 'right' && (this.y + moveLeftRight) < 505){
+    } if(direction === 'right' && (this.x + moveLeftRight) < 505){
             this.y +=moveLeftRight;
-    } if(direction === 'up' && (this.x - moveUpDown) > 83){
+    } if(direction === 'up' && (this.y - moveUpDown) > 83){
             this.y -=moveUpDown;
     } if(direction === 'down' && (this.y + moveUpDown) < 498 ){
             this.y +=moveUpDown;
