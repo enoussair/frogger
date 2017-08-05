@@ -47,9 +47,9 @@ Player.prototype.handleInput = function(direction){
     var moveLeftRight = 101;
     var moveUpDown = 83;
     if(direction === 'left' && (this.x - moveLeftRight) > 0){
-            this.y -=moveLeftRight;
+            this.x -=moveLeftRight;
     } if(direction === 'right' && (this.x + moveLeftRight) < 505){
-            this.y +=moveLeftRight;
+            this.x +=moveLeftRight;
     } if(direction === 'up' && (this.y - moveUpDown) > 83){
             this.y -=moveUpDown;
     } if(direction === 'down' && (this.y + moveUpDown) < 498 ){
