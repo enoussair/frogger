@@ -43,7 +43,7 @@ Player.prototype.update=function(){};
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-Player.prototype.handleInput(direction){
+Player.prototype.handleInput = function(direction){
     var moveLeftRight = 101;
     var moveUpDown = 83;
     if(direction === 'left' && (this.y - moveLeftRight) > 0){
@@ -55,7 +55,7 @@ Player.prototype.handleInput(direction){
     } if(direction === 'down' && (this.y + moveUpDown) < 498 ){
             this.y +=moveUpDown;
     }
-}
+};
 var player = new Player(202,318);
 
 
