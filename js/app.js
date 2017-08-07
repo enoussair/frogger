@@ -119,7 +119,6 @@ Player.prototype.update = function(dt) {
     }
     if (this.isCollision()) {
         this.reset();
-        game.dead();
         ctx.clearRect(0, 0, 100, 100);
     }
     if (this.y < 10) {
