@@ -6,12 +6,12 @@ game = {
     inceaseScore: function() {
         game.score += 1;
     },
-    win: function(){
-      ctx.clearRect(0, 0, 100, 100);
-      ctx.fillStyle = "black";
-      ctx.fillRect(0, 0, 500, 500);
-      ctx.fillStyle = "white";
-      ctx.fillText(game.message, 20, 20);
+    win: function() {
+        ctx.clearRect(0, 0, 100, 100);
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, 500, 500);
+        ctx.fillStyle = "white";
+        ctx.fillText(game.message, 20, 20);
     }
 };
 
@@ -27,6 +27,12 @@ var Enemy = function(locations) {
     this.speed = Math.floor(Math.random() * 150 + 90);;
 };
 
+Enemy.prototype.possibleLocations = [
+    [-100, 61.5],
+    [-100, 145.5],
+    [-100, 225]
+];
+
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
@@ -37,16 +43,11 @@ Enemy.prototype.update = function(dt) {
     //We should add an extra enemy or remove one from the game.
     if (this.x >= 550) {
         this.x = -200;
-        this.speed = Math.floor(Math.random() * 150 + 90);
-        var possibleLocations = [
-            [-100, 61.5],
-            [-100, 145.5],
-            [-100, 225]
-        ];
+        this.speed = Math.floor((Math.random() * 150) + 90);
         var chosenLocation = Math.floor(Math.random() * 3);
-        var check = Math.floor(Math.random() * 40 + 7);
+        var check = Math.floor((Math.random() * 40) + 7);
         if (check >= 7 && check <= 10 && allEnemies.length < 10) {
-            allEnemies.unshift(new Enemy(possibleLocations[chosenLocation]));
+            allEnemies.unshift(new Enemy(this.possibleLocations[chosenLocation]));
         }
         if (check > 10 && check <= 30 && allEnemies.length > 3) {
             for (var i = 0; i < allEnemies.length; i++) {
@@ -83,33 +84,34 @@ Player.prototype.render = function() {
     }
 };
 
+Player.prototype.moveLeftRight = 101;
+Player.prototype.moveUpDown = 83;
+
 Player.prototype.handleInput = function(direction) {
-    var moveLeftRight = 101;
-    var moveUpDown = 83;
-    if (direction === 'left' && (this.x - moveLeftRight) >= 0) {
-        this.x -= moveLeftRight;
+    if (direction === 'left' && (this.x - this.moveLeftRight) >= 0) {
+        this.x -= this.moveLeftRight;
     }
-    if (direction === 'right' && (this.x + moveLeftRight) < 505) {
-        this.x += moveLeftRight;
+    if (direction === 'right' && (this.x + this.moveLeftRight) < 505) {
+        this.x += this.moveLeftRight;
     }
-    if (direction === 'up' && (this.y - moveUpDown) >= -14) {
-        this.y -= moveUpDown;
+    if (direction === 'up' && (this.y - this.moveUpDown) >= -14) {
+        this.y -= this.moveUpDown;
     }
-    if (direction === 'down' && (this.y + moveUpDown) <= 406) {
-        this.y += moveUpDown;
+    if (direction === 'down' && (this.y + this.moveUpDown) <= 406) {
+        this.y += this.moveUpDown;
     }
 };
 
 //This player method simply checks whether we have collided with an enemy Based
 //On the x and y coordinates of each individual enemy and the player
 Player.prototype.isCollision = function() {
-    for(var i = 0; i <allEnemies.length; i++) {
+    for (var i = 0; i < allEnemies.length; i++) {
         if (Math.abs(this.x - allEnemies[i].x) >= 0 && Math.abs(this.x - allEnemies[i].x) <= 55) {
             if (Math.abs(this.y - allEnemies[i].y) >= 0 && Math.abs(this.y - allEnemies[i].y) <= 50) {
                 return true;
             }
-          }
         }
+    }
     return false;
 };
 Player.prototype.reset = function() {
@@ -130,7 +132,7 @@ Player.prototype.update = function(dt) {
         ctx.clearRect(0, 0, 100, 100);
     }
     if (game.score >= 5) {
-      game.win();
+        game.win();
     }
 };
 // Now instantiate your objects.
