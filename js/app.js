@@ -5,6 +5,13 @@ game = {
     countdown: 3,
     inceaseScore: function() {
         game.score += 1;
+    },
+    win: function(){
+      ctx.clearRect(0, 0, 100, 100);
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, 500, 500);
+      ctx.fillStyle = "white";
+      ctx.fillText(game.message, 20, 20);
     }
 };
 
@@ -66,6 +73,7 @@ var Player = function(x, y) {
     this.y = y;
     this.sprite = 'images/char-boy.png';
 }
+
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     //Call our Score count
@@ -95,28 +103,23 @@ Player.prototype.handleInput = function(direction) {
 //This player method simply checks whether we have collided with an enemy Based
 //On the x and y coordinates of each individual enemy and the player
 Player.prototype.isCollision = function() {
-    var flag = false;
-    allEnemies.forEach(function(enemy) {
-        if (Math.abs(player.x - enemy.x) >= 0 && Math.abs(player.x - enemy.x) <= 55) {
-            if (Math.abs(player.y - enemy.y) >= 0 && Math.abs(player.y - enemy.y) <= 50) {
-                flag = true;
+    for(var i = 0; i <allEnemies.length; i++) {
+        if (Math.abs(this.x - allEnemies[i].x) >= 0 && Math.abs(this.x - allEnemies[i].x) <= 55) {
+            if (Math.abs(this.y - allEnemies[i].y) >= 0 && Math.abs(this.y - allEnemies[i].y) <= 50) {
+                return true;
             }
+          }
         }
-    });
-    return flag;
+    return false;
 };
 Player.prototype.reset = function() {
     this.x = 202;
     this.y = 320;
-}
+};
 
 //This method both updates the players locatin upon collision or crossing
 //To the River and it puts up a message once the game is won.
 Player.prototype.update = function(dt) {
-    var DisplayScore = function() {
-        ctx.font = '20px Ariel';
-        ctx.fillText('Score: ' + game.score, 0, 20);
-    }
     if (this.isCollision()) {
         this.reset();
         ctx.clearRect(0, 0, 100, 100);
@@ -127,11 +130,7 @@ Player.prototype.update = function(dt) {
         ctx.clearRect(0, 0, 100, 100);
     }
     if (game.score >= 5) {
-        ctx.clearRect(0, 0, 100, 100);
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, 500, 500);
-        ctx.fillStyle = "white";
-        ctx.fillText(game.message, 20, 20);
+      game.win();
     }
 };
 // Now instantiate your objects.
