@@ -29,10 +29,14 @@ var Engine = (function(global) {
     canvas.height = 606;
     doc.body.appendChild(canvas);
 
+
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
     function main() {
+
+
+
         /* Get our time delta information which is required if your game
          * requires smooth animation. Because everyone's computer processes
          * instructions at different speeds we need a constant value that
@@ -80,7 +84,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+
     }
 
     /* This is called by the update function and loops through all of the
@@ -95,6 +99,8 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+
+
     }
 
     /* This function initially draws the "game level", it will then call
