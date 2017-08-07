@@ -1,3 +1,30 @@
+Frogger Arcade Game
+
+Summary
+
+This project is a part of the Udacity Front End Developer Nanodegree and it involves replicating the classic arcade game, Frogger.
+
+Goal
+
+The goal of this game is very simple. You, as a player, must manuever through a track of enemies without colliding with them. Once you reach the other side of the track, you will score a point and your character will reset to its original location. Once you reach a score of 5, you can congratulate yourself because you have achieved the "win" condition of the game. I put win in quotations because you may keep on playing after that, and the game is only ever truly over once you feel like ending it.
+
+
+Movement
+
+You may move the character with your arrow keys
+
+Links to GitHub Repository
+
+GitHub Project Repository: https://github.com/alexsales/frontend-nanodegree-frogger-arcade-game/
+GitHub Pages Demo: http://alexsales.github.io/frontend-nanodegree-frogger-arcade-game/
+
+Installation
+
+You may run this application by either going to this site, which is hosted by github:
+https://enoussair.github.io/frogger/
+
+Or you may download the github repo and run the index.html file.
+
 frontend-nanodegree-arcade-game
 ===============================
 
